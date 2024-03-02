@@ -13,7 +13,7 @@ Features:
 - Open-source code ([PyTorch](https://github.com/google/gemma_pytorch)).
 - Open-source inference framework ([C++](https://github.com/google/gemma.cpp))
 
-[Paper](./papers/gemma-report.pdf) | [BibTex](./bibtex/gemma.bib)
+[Paper](./papers/gemma.pdf) | [BibTex](./bibtex/gemma.bib)
 
 ---
 
@@ -27,3 +27,11 @@ Features:
 - Iterative RLHF
 
 [Paper](./papers/llama2.pdf) | [BibTex](./bibtex/llama2.bib)
+
+---
+
+[**Meta LLaMA**](https://ai.meta.com/blog/large-language-model-llama-meta-ai/)
+
+Pre-trained Models: [PT-7B](https://huggingface.co/baffo32/decapoda-research-llama-7B-hf) | [PT-33B](https://huggingface.co/alexl83/LLaMA-33B-HF) | [PT-65B](https://huggingface.co/Enoch/llama-65b-hf)
+
+[Paper](./papers/llama.pdf) | [BibTex](./bibtex/llama.bib)
