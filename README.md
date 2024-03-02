@@ -1,6 +1,8 @@
 # Awesome Small Language Models 👼🏻
 A curated list of open source **Small Language Models**.
 
+## Models
+
 [**Google Gemma**](https://blog.google/technology/developers/gemma-open-models/)
 
 Pre-trained Models: [PT-2B](https://huggingface.co/google/gemma-2b) | [PT-7B](https://huggingface.co/google/gemma-7b) 
