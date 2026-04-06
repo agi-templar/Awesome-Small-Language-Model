@@ -17,7 +17,7 @@ A curated list of open source **Small Language Models** (roughly ≤13B paramete
 | [OpenELM](#apple) | Apple | 270M–3B | 2K | Text | Apple | Layer-wise scaling; MLX support |
 | [Command R7B](#cohere) | Cohere | 7B | 128K | Text | CC-BY-NC | RAG & tool-use optimized; 23 languages |
 | [DeepSeek-R1 Distill](#deepseek) | DeepSeek | 1.5B–14B | 128K | Text | MIT | Reasoning via RL; distilled from R1 |
-| [Gemma 3](#google-gemma) | Google | 1B, 4B, 12B | 128K | Text + Vision | Gemma | 140+ languages; mobile-optimized 3n variants |
+| [Gemma 4](#google-gemma) | Google | E2B, E4B, 26B-A4B, 31B | 128K–256K | Text + Vision + Audio | Apache 2.0 | MoE + Dense; agentic workflows; 140+ languages |
 | [SmolLM2](#huggingface-smollm) | HuggingFace | 135M–1.7B | 8K | Text | Apache 2.0 | Ultra-small; beats Qwen2.5-1.5B at scale |
 | [LLaMA 3.2](#meta-llama) | Meta | 1B, 3B, 11B | 128K | Text + Vision | Llama 3.2 | Edge/mobile optimized; SpinQuant |
 | [Phi-4](#microsoft-phi) | Microsoft | 3.8B, 5.6B, 14B | 16K | Text + Vision + Audio | MIT | Surpasses GPT-4o on STEM QA |
@@ -133,6 +133,19 @@ Features:
 ---
 
 ## Google Gemma
+
+[**Google Gemma 4**](https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/) (April 2026)
+
+Pre-trained Models: [E2B](https://huggingface.co/google/gemma-4-E2B) | [E4B](https://huggingface.co/google/gemma-4-E4B) | [26B-A4B](https://huggingface.co/google/gemma-4-26B-A4B) | [31B](https://huggingface.co/google/gemma-4-31B)
+
+Instruction-Tuned Models: [E2B-IT](https://huggingface.co/google/gemma-4-E2B-it) | [E4B-IT](https://huggingface.co/google/gemma-4-E4B-it) | [26B-A4B-IT](https://huggingface.co/google/gemma-4-26B-A4B-it) | [31B-IT](https://huggingface.co/google/gemma-4-31B-it)
+
+Features:
+- Dense (E2B/E4B/31B) and MoE (26B total, 4B active) architectures; Apache 2.0 license
+- Multimodal: text + image + video input (31B/26B), text + image + audio input (E2B/E4B); 128K–256K context
+- Native function-calling, structured JSON output, and agentic workflow support; 140+ languages
+
+---
 
 [**Google Gemma 3**](https://blog.google/technology/developers/gemma-3/) (March 2025)
 
@@ -408,7 +421,7 @@ Features:
 
 ### Knowledge Distillation
 Training a smaller "student" model to mimic the behavior of a larger "teacher" model. The student learns from the teacher's output probability distributions rather than just ground-truth labels, capturing richer information about inter-class relationships.
-- Used by: DeepSeek-R1 Distill, LLaMA 3.2 (1B/3B distilled from 3.1 70B), Gemma 2/3 smaller variants
+- Used by: DeepSeek-R1 Distill, LLaMA 3.2 (1B/3B distilled from 3.1 70B), Gemma 2/3/4 smaller variants
 - [Distilling the Knowledge in a Neural Network (Hinton et al., 2015)](https://arxiv.org/abs/1503.02531)
 
 ### Pruning
