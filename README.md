@@ -6,23 +6,129 @@ A curated list of open source **Small Language Models** (roughly ≤13B paramete
 
 > **Why small?** Small language models can run on consumer GPUs, edge devices, and even phones — making AI accessible without cloud dependencies.
 
-## Table of Contents
-- [Google Gemma](#google-gemma)
-- [Meta LLaMA](#meta-llama)
-- [Microsoft Phi](#microsoft-phi)
-- [Mistral](#mistral)
-- [Alibaba Qwen](#alibaba-qwen)
-- [DeepSeek](#deepseek)
-- [HuggingFace SmolLM](#huggingface-smollm)
-- [AI2 OLMo](#ai2-olmo)
-- [RWKV](#rwkv)
-- [TII Falcon](#tii-falcon)
-- [Cohere](#cohere)
-- [Apple](#apple)
-- [Stability AI](#stability-ai)
-- [Techniques for Creating SLMs](#techniques-for-creating-slms)
-- [Deployment Tools](#deployment-tools)
-- [Contributing](#contributing)
+## Quick Comparison
+
+> Latest version of each model family. Click the model name to jump to details.
+
+| Model | Org | Sizes | Context | Modality | License | Highlights |
+|---|---|---|---|---|---|---|
+| [OLMo 2](#ai2-olmo) | AI2 | 1B, 7B, 13B | 4K | Text | Apache 2.0 | Fully open (data + code + recipes) |
+| [Qwen 3](#alibaba-qwen) | Alibaba | 0.6B–14B, 30B-A3B | 128K | Text | Apache 2.0 | Hybrid thinking; 119 languages; 36T tokens |
+| [OpenELM](#apple) | Apple | 270M–3B | 2K | Text | Apple | Layer-wise scaling; MLX support |
+| [Command R7B](#cohere) | Cohere | 7B | 128K | Text | CC-BY-NC | RAG & tool-use optimized; 23 languages |
+| [DeepSeek-R1 Distill](#deepseek) | DeepSeek | 1.5B–14B | 128K | Text | MIT | Reasoning via RL; distilled from R1 |
+| [Gemma 3](#google-gemma) | Google | 1B, 4B, 12B | 128K | Text + Vision | Gemma | 140+ languages; mobile-optimized 3n variants |
+| [SmolLM2](#huggingface-smollm) | HuggingFace | 135M–1.7B | 8K | Text | Apache 2.0 | Ultra-small; beats Qwen2.5-1.5B at scale |
+| [LLaMA 3.2](#meta-llama) | Meta | 1B, 3B, 11B | 128K | Text + Vision | Llama 3.2 | Edge/mobile optimized; SpinQuant |
+| [Phi-4](#microsoft-phi) | Microsoft | 3.8B, 5.6B, 14B | 16K | Text + Vision + Audio | MIT | Surpasses GPT-4o on STEM QA |
+| [Mistral Small 3.1](#mistral) | Mistral | 24B | 128K | Text + Vision | Apache 2.0 | Beats GPT-4o Mini; 150 tok/s |
+| [RWKV-7](#rwkv) | RWKV | 0.4B–2.9B | Unlimited | Text | Apache 2.0 | RNN; O(1) memory; no KV cache |
+| [StableLM 2](#stability-ai) | Stability AI | 1.6B, 12B | 4K | Text | Stability AI | Laptop-deployable; 7 languages |
+| [Falcon 3](#tii-falcon) | TII | 1B–10B | 8K | Text | Apache 2.0 | 14T tokens; includes Mamba variant |
+
+**See also:** [Techniques for Creating SLMs](#techniques-for-creating-slms) | [Deployment Tools](#deployment-tools) | [Contributing](#contributing)
+
+---
+
+## AI2 OLMo
+
+[**AI2 OLMo 2**](https://allenai.org/blog/olmo2) (December 2024)
+
+Models: [1B](https://huggingface.co/allenai/OLMo-2-0425-1B) | [7B-Instruct](https://huggingface.co/allenai/OLMo-2-1124-7B-Instruct) | [13B-Instruct](https://huggingface.co/allenai/OLMo-2-1124-13B-Instruct)
+
+Features:
+- Fully open: weights, training data, code, recipes, and intermediate checkpoints
+- OLMo 2 7B outperforms LLaMA 3.1 8B; 13B outperforms Qwen 2.5 7B
+- Two-stage curriculum pretraining on 3.9T tokens
+
+[Paper](https://arxiv.org/abs/2501.00656)
+
+---
+
+## Alibaba Qwen
+
+[**Alibaba Qwen 3**](https://qwenlm.github.io/blog/qwen3/) (April 2025)
+
+Dense Models: [0.6B](https://huggingface.co/Qwen/Qwen3-0.6B) | [1.7B](https://huggingface.co/Qwen/Qwen3-1.7B) | [4B](https://huggingface.co/Qwen/Qwen3-4B) | [8B](https://huggingface.co/Qwen/Qwen3-8B) | [14B](https://huggingface.co/Qwen/Qwen3-14B)
+
+MoE Models: [30B-A3B](https://huggingface.co/Qwen/Qwen3-30B-A3B)
+
+Features:
+- Hybrid thinking modes: fast responses + deep chain-of-thought reasoning
+- 119 languages/dialects; trained on 36T tokens; Apache 2.0 license
+- MoE variant (30B total, 3B active) for efficient deployment
+
+[Paper](https://arxiv.org/abs/2505.09388)
+
+---
+
+[**Alibaba Qwen 2.5**](https://qwenlm.github.io/blog/qwen2.5/) (September 2024)
+
+Models: [0.5B](https://huggingface.co/Qwen/Qwen2.5-0.5B) | [1.5B](https://huggingface.co/Qwen/Qwen2.5-1.5B) | [3B](https://huggingface.co/Qwen/Qwen2.5-3B) | [7B](https://huggingface.co/Qwen/Qwen2.5-7B) | [14B](https://huggingface.co/Qwen/Qwen2.5-14B)
+
+Features:
+- 18T token pretraining; strong on coding, math, and instruction following
+- Specialized Coder and Math variants available
+- 29 languages; long context up to 128K tokens
+
+[Paper](https://arxiv.org/abs/2412.15115)
+
+---
+
+[**Alibaba Qwen 2**](https://qwenlm.github.io/blog/qwen2/) (June 2024)
+
+Models: [0.5B](https://huggingface.co/Qwen/Qwen2-0.5B) | [1.5B](https://huggingface.co/Qwen/Qwen2-1.5B) | [7B](https://huggingface.co/Qwen/Qwen2-7B)
+
+Features:
+- Significant improvements in coding, math, and multilingual tasks
+- GQA for efficient KV cache; 128K context for 7B model
+
+[Paper](https://arxiv.org/abs/2407.10671)
+
+---
+
+## Apple
+
+[**Apple OpenELM**](https://machinelearning.apple.com/research/openelm) (April 2024)
+
+Pre-trained Models: [270M](https://huggingface.co/apple/OpenELM-270M) | [450M](https://huggingface.co/apple/OpenELM-450M) | [1.1B](https://huggingface.co/apple/OpenELM-1_1B) | [3B](https://huggingface.co/apple/OpenELM-3B)
+
+Instruction-Tuned Models: [270M-Instruct](https://huggingface.co/apple/OpenELM-270M-Instruct) | [450M-Instruct](https://huggingface.co/apple/OpenELM-450M-Instruct) | [1.1B-Instruct](https://huggingface.co/apple/OpenELM-1_1B-Instruct) | [3B-Instruct](https://huggingface.co/apple/OpenELM-3B-Instruct)
+
+Features:
+- Layer-wise scaling strategy for efficient parameter allocation
+- Fully open: training data, logs, checkpoints, and configurations released
+- MLX support for inference/fine-tuning on Apple devices
+
+[Paper](https://arxiv.org/abs/2404.14619)
+
+---
+
+## Cohere
+
+[**Cohere Command R7B**](https://cohere.com/blog/command-r7b) (December 2024)
+
+Models: [R7B](https://huggingface.co/CohereLabs/c4ai-command-r7b-12-2024)
+
+Features:
+- 7B parameter model optimized for RAG, tool use, and agentic workflows
+- Multilingual (23 languages); 128K context length
+- Strong performance among similar-sized models on HuggingFace Open LLM Leaderboard
+
+---
+
+## DeepSeek
+
+[**DeepSeek-R1 Distilled Models**](https://huggingface.co/deepseek-ai/DeepSeek-R1) (January 2025)
+
+Small Distilled Models: [Qwen-1.5B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B) | [Qwen-7B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B) | [Llama-8B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-8B) | [Qwen-14B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B)
+
+Features:
+- Distilled from DeepSeek-R1 using 800K curated reasoning samples
+- 8B distilled model matches larger models on MATH-500 and AIME 2024
+- Reasoning via reinforcement learning without human-annotated reasoning data
+
+[Paper](https://arxiv.org/abs/2501.12948)
 
 ---
 
@@ -69,6 +175,21 @@ Features:
 - Open-source code ([PyTorch](https://github.com/google/gemma_pytorch)) and inference framework ([C++](https://github.com/google/gemma.cpp))
 
 [Paper](./papers/gemma.pdf) | [BibTex](./bibtex/gemma.bib)
+
+---
+
+## HuggingFace SmolLM
+
+[**HuggingFace SmolLM2**](https://huggingface.co/blog/smollm2) (November 2024)
+
+Models: [135M](https://huggingface.co/HuggingFaceTB/SmolLM2-135M) | [360M](https://huggingface.co/HuggingFaceTB/SmolLM2-360M) | [1.7B](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B) | [1.7B-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct)
+
+Features:
+- 1.7B model trained on 11T tokens with multi-stage curriculum
+- Outperforms Qwen2.5-1.5B and LLaMA 3.2-1B at similar scale
+- Apache 2.0 license; designed for on-device deployment
+
+[Paper](https://arxiv.org/abs/2502.02737)
 
 ---
 
@@ -227,93 +348,6 @@ Features:
 
 ---
 
-## Alibaba Qwen
-
-[**Alibaba Qwen 3**](https://qwenlm.github.io/blog/qwen3/) (April 2025)
-
-Dense Models: [0.6B](https://huggingface.co/Qwen/Qwen3-0.6B) | [1.7B](https://huggingface.co/Qwen/Qwen3-1.7B) | [4B](https://huggingface.co/Qwen/Qwen3-4B) | [8B](https://huggingface.co/Qwen/Qwen3-8B) | [14B](https://huggingface.co/Qwen/Qwen3-14B)
-
-MoE Models: [30B-A3B](https://huggingface.co/Qwen/Qwen3-30B-A3B)
-
-Features:
-- Hybrid thinking modes: fast responses + deep chain-of-thought reasoning
-- 119 languages/dialects; trained on 36T tokens; Apache 2.0 license
-- MoE variant (30B total, 3B active) for efficient deployment
-
-[Paper](https://arxiv.org/abs/2505.09388)
-
----
-
-[**Alibaba Qwen 2.5**](https://qwenlm.github.io/blog/qwen2.5/) (September 2024)
-
-Models: [0.5B](https://huggingface.co/Qwen/Qwen2.5-0.5B) | [1.5B](https://huggingface.co/Qwen/Qwen2.5-1.5B) | [3B](https://huggingface.co/Qwen/Qwen2.5-3B) | [7B](https://huggingface.co/Qwen/Qwen2.5-7B) | [14B](https://huggingface.co/Qwen/Qwen2.5-14B)
-
-Features:
-- 18T token pretraining; strong on coding, math, and instruction following
-- Specialized Coder and Math variants available
-- 29 languages; long context up to 128K tokens
-
-[Paper](https://arxiv.org/abs/2412.15115)
-
----
-
-[**Alibaba Qwen 2**](https://qwenlm.github.io/blog/qwen2/) (June 2024)
-
-Models: [0.5B](https://huggingface.co/Qwen/Qwen2-0.5B) | [1.5B](https://huggingface.co/Qwen/Qwen2-1.5B) | [7B](https://huggingface.co/Qwen/Qwen2-7B)
-
-Features:
-- Significant improvements in coding, math, and multilingual tasks
-- GQA for efficient KV cache; 128K context for 7B model
-
-[Paper](https://arxiv.org/abs/2407.10671)
-
----
-
-## DeepSeek
-
-[**DeepSeek-R1 Distilled Models**](https://huggingface.co/deepseek-ai/DeepSeek-R1) (January 2025)
-
-Small Distilled Models: [Qwen-1.5B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B) | [Qwen-7B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B) | [Llama-8B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-8B) | [Qwen-14B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B)
-
-Features:
-- Distilled from DeepSeek-R1 using 800K curated reasoning samples
-- 8B distilled model matches larger models on MATH-500 and AIME 2024
-- Reasoning via reinforcement learning without human-annotated reasoning data
-
-[Paper](https://arxiv.org/abs/2501.12948)
-
----
-
-## HuggingFace SmolLM
-
-[**HuggingFace SmolLM2**](https://huggingface.co/blog/smollm2) (November 2024)
-
-Models: [135M](https://huggingface.co/HuggingFaceTB/SmolLM2-135M) | [360M](https://huggingface.co/HuggingFaceTB/SmolLM2-360M) | [1.7B](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B) | [1.7B-Instruct](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct)
-
-Features:
-- 1.7B model trained on 11T tokens with multi-stage curriculum
-- Outperforms Qwen2.5-1.5B and LLaMA 3.2-1B at similar scale
-- Apache 2.0 license; designed for on-device deployment
-
-[Paper](https://arxiv.org/abs/2502.02737)
-
----
-
-## AI2 OLMo
-
-[**AI2 OLMo 2**](https://allenai.org/blog/olmo2) (December 2024)
-
-Models: [1B](https://huggingface.co/allenai/OLMo-2-0425-1B) | [7B-Instruct](https://huggingface.co/allenai/OLMo-2-1124-7B-Instruct) | [13B-Instruct](https://huggingface.co/allenai/OLMo-2-1124-13B-Instruct)
-
-Features:
-- Fully open: weights, training data, code, recipes, and intermediate checkpoints
-- OLMo 2 7B outperforms LLaMA 3.1 8B; 13B outperforms Qwen 2.5 7B
-- Two-stage curriculum pretraining on 3.9T tokens
-
-[Paper](https://arxiv.org/abs/2501.00656)
-
----
-
 ## RWKV
 
 [**RWKV-7 "Goose"**](https://www.rwkv.com/) (March 2025)
@@ -326,6 +360,21 @@ Features:
 - Linear time complexity; infinite context length; Apache 2.0 license
 
 [Paper](https://arxiv.org/abs/2503.14456)
+
+---
+
+## Stability AI
+
+[**Stability AI StableLM 2**](https://stability.ai/news/introducing-stable-lm-2) (January 2024)
+
+Models: [1.6B](https://huggingface.co/stabilityai/stablelm-2-1_6b) | [1.6B-Chat](https://huggingface.co/stabilityai/stablelm-2-1_6b-chat) | [12B](https://huggingface.co/stabilityai/stablelm-2-12b) | [12B-Chat](https://huggingface.co/stabilityai/stablelm-2-12b-chat)
+
+Features:
+- 1.6B model trained on 2T tokens across 7 languages
+- 12B model trained on 2T tokens with DPO for chat alignment
+- Compact enough for laptop deployment
+
+[Paper](https://arxiv.org/abs/2402.17834)
 
 ---
 
@@ -352,51 +401,6 @@ Features:
 - Deployable on single A10 GPU
 
 [Paper](https://arxiv.org/abs/2407.14885)
-
----
-
-## Cohere
-
-[**Cohere Command R7B**](https://cohere.com/blog/command-r7b) (December 2024)
-
-Models: [R7B](https://huggingface.co/CohereLabs/c4ai-command-r7b-12-2024)
-
-Features:
-- 7B parameter model optimized for RAG, tool use, and agentic workflows
-- Multilingual (23 languages); 128K context length
-- Strong performance among similar-sized models on HuggingFace Open LLM Leaderboard
-
----
-
-## Apple
-
-[**Apple OpenELM**](https://machinelearning.apple.com/research/openelm) (April 2024)
-
-Pre-trained Models: [270M](https://huggingface.co/apple/OpenELM-270M) | [450M](https://huggingface.co/apple/OpenELM-450M) | [1.1B](https://huggingface.co/apple/OpenELM-1_1B) | [3B](https://huggingface.co/apple/OpenELM-3B)
-
-Instruction-Tuned Models: [270M-Instruct](https://huggingface.co/apple/OpenELM-270M-Instruct) | [450M-Instruct](https://huggingface.co/apple/OpenELM-450M-Instruct) | [1.1B-Instruct](https://huggingface.co/apple/OpenELM-1_1B-Instruct) | [3B-Instruct](https://huggingface.co/apple/OpenELM-3B-Instruct)
-
-Features:
-- Layer-wise scaling strategy for efficient parameter allocation
-- Fully open: training data, logs, checkpoints, and configurations released
-- MLX support for inference/fine-tuning on Apple devices
-
-[Paper](https://arxiv.org/abs/2404.14619)
-
----
-
-## Stability AI
-
-[**Stability AI StableLM 2**](https://stability.ai/news/introducing-stable-lm-2) (January 2024)
-
-Models: [1.6B](https://huggingface.co/stabilityai/stablelm-2-1_6b) | [1.6B-Chat](https://huggingface.co/stabilityai/stablelm-2-1_6b-chat) | [12B](https://huggingface.co/stabilityai/stablelm-2-12b) | [12B-Chat](https://huggingface.co/stabilityai/stablelm-2-12b-chat)
-
-Features:
-- 1.6B model trained on 2T tokens across 7 languages
-- 12B model trained on 2T tokens with DPO for chat alignment
-- Compact enough for laptop deployment
-
-[Paper](https://arxiv.org/abs/2402.17834)
 
 ---
 
@@ -430,39 +434,6 @@ Reducing the numerical precision of model weights and activations (e.g., FP32 �
 | [vLLM](https://docs.vllm.ai) | Linux, Cloud | High-throughput serving with PagedAttention; production-grade | [GitHub](https://github.com/vllm-project/vllm) |
 | [MLC LLM](https://llm.mlc.ai) | Mobile, Web, Desktop | Universal deployment across platforms including iOS/Android/WebGPU | [GitHub](https://github.com/mlc-ai/mlc-llm) |
 | [PocketPal AI](https://github.com/a-ghorbani/pocketpal-ai) | iOS, Android | Mobile app for running SLMs on-device | [iOS](https://apps.apple.com/us/app/pocketpal-ai/id6502579498) / [Android](https://play.google.com/store/apps/details?id=com.pocketpalai) |
-
----
-
-## Summary
-
-| Model | Org | Params (small variants) | Date | Paper |
-|---|---|---|---|---|
-| Gemma 3 | Google | 1B, 4B, 12B | Mar 2025 | [2503.19786](https://arxiv.org/abs/2503.19786) |
-| Gemma 2 | Google | 2B, 9B | Jun 2024 | [2408.00118](https://arxiv.org/abs/2408.00118) |
-| Gemma | Google | 2B, 7B | Feb 2024 | [Link](./papers/gemma.pdf) |
-| LLaMA 3.2 | Meta | 1B, 3B, 11B | Sep 2024 | [2407.21783](https://arxiv.org/abs/2407.21783) |
-| LLaMA 3.1 | Meta | 8B | Jul 2024 | [2407.21783](https://arxiv.org/abs/2407.21783) |
-| LLaMA 3 | Meta | 8B | Apr 2024 | [2407.21783](https://arxiv.org/abs/2407.21783) |
-| LLaMA 2 | Meta | 7B, 13B | Jul 2023 | [Link](./papers/llama2.pdf) |
-| Phi-4 | Microsoft | 3.8B, 5.6B, 14B | Dec 2024 | [2412.08905](https://arxiv.org/abs/2412.08905) |
-| Phi-3.5 | Microsoft | 3.8B, 4.2B | Aug 2024 | [2404.14219](https://arxiv.org/abs/2404.14219) |
-| Phi-3 | Microsoft | 3.8B, 7B, 14B | Apr 2024 | [2404.14219](https://arxiv.org/abs/2404.14219) |
-| Mistral Small 3.1 | Mistral | 24B | Mar 2025 | -- |
-| Mistral Small 3 | Mistral | 24B | Jan 2025 | -- |
-| Ministral | Mistral | 3B, 8B | Oct 2024 | -- |
-| Mistral 7B v0.3 | Mistral | 7B | May 2024 | [2310.06825](https://arxiv.org/abs/2310.06825) |
-| Qwen 3 | Alibaba | 0.6B–14B, 30B-A3B | Apr 2025 | [2505.09388](https://arxiv.org/abs/2505.09388) |
-| Qwen 2.5 | Alibaba | 0.5B–14B | Sep 2024 | [2412.15115](https://arxiv.org/abs/2412.15115) |
-| Qwen 2 | Alibaba | 0.5B–7B | Jun 2024 | [2407.10671](https://arxiv.org/abs/2407.10671) |
-| DeepSeek-R1 Distill | DeepSeek | 1.5B–14B | Jan 2025 | [2501.12948](https://arxiv.org/abs/2501.12948) |
-| SmolLM2 | HuggingFace | 135M–1.7B | Nov 2024 | [2502.02737](https://arxiv.org/abs/2502.02737) |
-| OLMo 2 | AI2 | 1B, 7B, 13B | Dec 2024 | [2501.00656](https://arxiv.org/abs/2501.00656) |
-| RWKV-7 Goose | RWKV | 421M–2.9B | Mar 2025 | [2503.14456](https://arxiv.org/abs/2503.14456) |
-| Falcon 3 | TII | 1B–10B | Dec 2024 | -- |
-| Falcon 2 | TII | 11B | May 2024 | [2407.14885](https://arxiv.org/abs/2407.14885) |
-| Command R7B | Cohere | 7B | Dec 2024 | -- |
-| OpenELM | Apple | 270M–3B | Apr 2024 | [2404.14619](https://arxiv.org/abs/2404.14619) |
-| StableLM 2 | Stability AI | 1.6B, 12B | Jan 2024 | [2402.17834](https://arxiv.org/abs/2402.17834) |
 
 ---
 
