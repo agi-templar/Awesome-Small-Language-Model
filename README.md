@@ -41,7 +41,7 @@ Features:
 - OLMo 2 7B outperforms LLaMA 3.1 8B; 13B outperforms Qwen 2.5 7B
 - Two-stage curriculum pretraining on 3.9T tokens
 
-[Paper](https://arxiv.org/abs/2501.00656)
+[Paper](https://arxiv.org/abs/2501.00656) | [BibTeX](./bibtex/olmo2.bib)
 
 ---
 
@@ -58,7 +58,7 @@ Features:
 - 119 languages/dialects; trained on 36T tokens; Apache 2.0 license
 - MoE variant (30B total, 3B active) for efficient deployment
 
-[Paper](https://arxiv.org/abs/2505.09388)
+[Paper](https://arxiv.org/abs/2505.09388) | [BibTeX](./bibtex/qwen3.bib)
 
 ---
 
@@ -71,7 +71,7 @@ Features:
 - Specialized Coder and Math variants available
 - 29 languages; long context up to 128K tokens
 
-[Paper](https://arxiv.org/abs/2412.15115)
+[Paper](https://arxiv.org/abs/2412.15115) | [BibTeX](./bibtex/qwen2.5.bib)
 
 ---
 
@@ -83,7 +83,7 @@ Features:
 - Significant improvements in coding, math, and multilingual tasks
 - GQA for efficient KV cache; 128K context for 7B model
 
-[Paper](https://arxiv.org/abs/2407.10671)
+[Paper](https://arxiv.org/abs/2407.10671) | [BibTeX](./bibtex/qwen2.bib)
 
 ---
 
@@ -100,7 +100,7 @@ Features:
 - Fully open: training data, logs, checkpoints, and configurations released
 - MLX support for inference/fine-tuning on Apple devices
 
-[Paper](https://arxiv.org/abs/2404.14619)
+[Paper](https://arxiv.org/abs/2404.14619) | [BibTeX](./bibtex/openelm.bib)
 
 ---
 
@@ -128,7 +128,7 @@ Features:
 - 8B distilled model matches larger models on MATH-500 and AIME 2024
 - Reasoning via reinforcement learning without human-annotated reasoning data
 
-[Paper](https://arxiv.org/abs/2501.12948)
+[Paper](https://arxiv.org/abs/2501.12948) | [BibTeX](./bibtex/deepseek-r1.bib)
 
 ---
 
@@ -145,7 +145,7 @@ Features:
 - Supports 140+ languages; knowledge distillation during training
 - Gemma 3n variants optimized for mobile/edge devices
 
-[Paper](https://arxiv.org/abs/2503.19786)
+[Paper](https://arxiv.org/abs/2503.19786) | [BibTeX](./bibtex/gemma3.bib)
 
 ---
 
@@ -160,7 +160,7 @@ Features:
 - Smaller models trained via knowledge distillation instead of next-token prediction
 - 2B model trained on 2T tokens; 9B model trained on 8T tokens
 
-[Paper](https://arxiv.org/abs/2408.00118)
+[Paper](https://arxiv.org/abs/2408.00118) | [BibTeX](./bibtex/gemma2.bib)
 
 ---
 
@@ -174,7 +174,7 @@ Features:
 - Built on research from Gemini; trained on 6T tokens
 - Open-source code ([PyTorch](https://github.com/google/gemma_pytorch)) and inference framework ([C++](https://github.com/google/gemma.cpp))
 
-[Paper](./papers/gemma.pdf) | [BibTex](./bibtex/gemma.bib)
+[Paper](https://arxiv.org/abs/2403.08295) | [BibTeX](./bibtex/gemma.bib)
 
 ---
 
@@ -189,7 +189,7 @@ Features:
 - Outperforms Qwen2.5-1.5B and LLaMA 3.2-1B at similar scale
 - Apache 2.0 license; designed for on-device deployment
 
-[Paper](https://arxiv.org/abs/2502.02737)
+[Paper](https://arxiv.org/abs/2502.02737) | [BibTeX](./bibtex/smollm2.bib)
 
 ---
 
@@ -206,7 +206,7 @@ Features:
 - 128K context length; trained on 9T tokens with knowledge distillation from LLaMA 3.1
 - Optimized for on-device with SpinQuant and QLoRA support
 
-[Paper](https://arxiv.org/abs/2407.21783)
+[Paper](https://arxiv.org/abs/2407.21783) | [BibTeX](./bibtex/llama3.bib)
 
 ---
 
@@ -218,7 +218,7 @@ Features:
 - 128K context length; multilingual support for 8 languages
 - Improved tool use and function calling capabilities
 
-[Paper](https://arxiv.org/abs/2407.21783)
+[Paper](https://arxiv.org/abs/2407.21783) | [BibTeX](./bibtex/llama3.bib)
 
 ---
 
@@ -230,7 +230,7 @@ Features:
 - New 128K vocabulary tokenizer (up from 32K in LLaMA 2)
 - Grouped-Query Attention (GQA) for improved inference
 
-[Paper](https://arxiv.org/abs/2407.21783)
+[Paper](https://arxiv.org/abs/2407.21783) | [BibTeX](./bibtex/llama3.bib)
 
 ---
 
@@ -244,7 +244,7 @@ Features:
 - Iterative RLHF for chat alignment; 4K context window
 - Trained on 2T tokens; safety-tuned with red-teaming
 
-[Paper](./papers/llama2.pdf) | [BibTex](./bibtex/llama2.bib)
+[Paper](https://arxiv.org/abs/2307.09288) | [BibTeX](./bibtex/llama2.bib)
 
 ---
 
@@ -256,7 +256,7 @@ Features:
 - Trained on publicly available data only (1T–1.4T tokens)
 - Demonstrated that smaller models trained on more data can match larger models
 
-[Paper](./papers/llama.pdf) | [BibTex](./bibtex/llama.bib)
+[Paper](https://arxiv.org/abs/2302.13971) | [BibTeX](./bibtex/llama.bib)
 
 ---
 
@@ -271,7 +271,7 @@ Features:
 - Strategic use of synthetic data throughout training; superior on math competition problems
 - Phi-4-mini (3.8B) and Phi-4-multimodal (5.6B, handles text/images/audio) variants
 
-[Paper](https://arxiv.org/abs/2412.08905)
+[Paper](https://arxiv.org/abs/2412.08905) | [BibTeX](./bibtex/phi4.bib)
 
 ---
 
@@ -284,7 +284,7 @@ Features:
 - MoE variant for efficient inference; Vision variant for image understanding
 - MIT licensed
 
-[Paper](https://arxiv.org/abs/2404.14219)
+[Paper](https://arxiv.org/abs/2404.14219) | [BibTeX](./bibtex/phi3.bib)
 
 ---
 
@@ -297,7 +297,7 @@ Features:
 - Data quality over scale philosophy; high-quality curated + synthetic data
 - Runs locally on phones
 
-[Paper](https://arxiv.org/abs/2404.14219)
+[Paper](https://arxiv.org/abs/2404.14219) | [BibTeX](./bibtex/phi3.bib)
 
 ---
 
@@ -344,7 +344,7 @@ Features:
 - Extended vocabulary and improved function calling
 - Sliding-window attention for efficient long-context inference
 
-[Paper](https://arxiv.org/abs/2310.06825)
+[Paper](https://arxiv.org/abs/2310.06825) | [BibTeX](./bibtex/mistral7b.bib)
 
 ---
 
@@ -359,7 +359,7 @@ Features:
 - 2.9B model achieves new 3B SOTA on multilingual tasks
 - Linear time complexity; infinite context length; Apache 2.0 license
 
-[Paper](https://arxiv.org/abs/2503.14456)
+[Paper](https://arxiv.org/abs/2503.14456) | [BibTeX](./bibtex/rwkv7.bib)
 
 ---
 
@@ -374,7 +374,7 @@ Features:
 - 12B model trained on 2T tokens with DPO for chat alignment
 - Compact enough for laptop deployment
 
-[Paper](https://arxiv.org/abs/2402.17834)
+[Paper](https://arxiv.org/abs/2402.17834) | [BibTeX](./bibtex/stablelm2.bib)
 
 ---
 
@@ -400,7 +400,7 @@ Features:
 - First Falcon with vision-language model (VLM) capability
 - Deployable on single A10 GPU
 
-[Paper](https://arxiv.org/abs/2407.14885)
+[Paper](https://arxiv.org/abs/2407.14885) | [BibTeX](./bibtex/falcon2.bib)
 
 ---
 
