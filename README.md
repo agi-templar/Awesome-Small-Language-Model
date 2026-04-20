@@ -431,6 +431,8 @@ Removing redundant or less important parameters (weights, neurons, or entire lay
 - [A Survey on Model Compression for Large Language Models](https://arxiv.org/abs/2308.07633)
 
 ### Quantization
+
+| [OneComp](https://github.com/FujitsuResearch/OneCompression) | Fujitsu PTQ pipeline, Qwen3 0.6B-32B tested | [arXiv:2603.28845](https://arxiv.org/abs/2603.28845) | Apache-2.0 |
 Reducing the numerical precision of model weights and activations (e.g., FP32 → INT8 or INT4), significantly reducing memory footprint and speeding up inference.
 - **Post-Training Quantization (PTQ)**: quantize after training (GPTQ, AWQ, GGUF)
 - **Quantization-Aware Training (QAT)**: train with quantization in the loop for better accuracy
