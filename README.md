@@ -22,6 +22,7 @@ A curated list of open source **Small Language Models** (roughly ≤13B paramete
 | [LLaMA 3.2](#meta-llama) | Meta | 1B, 3B, 11B | 128K | Text + Vision | Llama 3.2 | Edge/mobile optimized; SpinQuant |
 | [Phi-4](#microsoft-phi) | Microsoft | 3.8B, 5.6B, 14B | 16K | Text + Vision + Audio | MIT | Surpasses GPT-4o on STEM QA |
 | [Mistral Small 3.1](#mistral) | Mistral | 24B | 128K | Text + Vision | Apache 2.0 | Beats GPT-4o Mini; 150 tok/s |
+| [Phocinae Largha](#phocinae) | Phocinae | 144.3M | 8K | Text | Apache 2.0 | Bilingual typed decisions; calibrated Choice/Score/Noul; CPU-capable |
 | [RWKV-7](#rwkv) | RWKV | 0.4B–2.9B | Unlimited | Text | Apache 2.0 | RNN; O(1) memory; no KV cache |
 | [StableLM 2](#stability-ai) | Stability AI | 1.6B, 12B | 4K | Text | Stability AI | Laptop-deployable; 7 languages |
 | [Falcon 3](#tii-falcon) | TII | 1B–10B | 8K | Text | Apache 2.0 | 14T tokens; includes Mamba variant |
@@ -358,6 +359,21 @@ Features:
 - Sliding-window attention for efficient long-context inference
 
 [Paper](https://arxiv.org/abs/2310.06825) | [BibTeX](./bibtex/mistral7b.bib)
+
+---
+
+## Phocinae
+
+[**Phocinae Largha 150M**](https://github.com/Phocinae/Phocinae-Largha-150M-v1) (October 2026)
+
+Models: [Largha-150M-v1](https://huggingface.co/Phocinae/Phocinae-Largha-150M-v1)
+
+Features:
+- 144.3M-parameter bilingual (English/Chinese) typed decision model on mmBERT-small (Apache-2.0)
+- Returns calibrated Choice, Score and Noul probabilities in one forward pass; no free-text generation
+- Runs locally: 21.0 ms p50 per decision on an RTX 5090 (fp16); about 1.64 s per case on CPU (4 GB RAM)
+
+[Announcement](https://dev.to/perrylink/tiny-model-big-decisions-how-i-built-a-144m-parameter-typed-decision-model-that-routes-82-of-23fi) | [Protocol](https://github.com/Phocinae/Phocinae-Largha-150M-v1/blob/main/docs/protocol.md) | [Benchmarks](https://github.com/Phocinae/Phocinae-Largha-150M-v1/blob/main/BENCHMARKS.md)
 
 ---
 
